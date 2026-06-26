@@ -22,13 +22,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: orchestrator-service
+          - name: agent-orchestration-loop
             dockerfile: ./Dockerfile
             context: .
-          - name: orchestrator-webhook
+          - name: agent-orchestration-loop-webhook
             dockerfile: ./Dockerfile.webhook
             context: .
-          - name: orchestrator-caddy
+          - name: agent-orchestration-loop-caddy
             dockerfile: ./deploy/caddy/Dockerfile
             context: ./deploy/caddy
 

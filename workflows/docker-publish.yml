@@ -25,15 +25,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: orchestrator-service
+          - name: agent-orchestration-loop
             dockerfile: ./Dockerfile
             context: .
             image_suffix: ""
-          - name: orchestrator-webhook
+          - name: agent-orchestration-loop-webhook
             dockerfile: ./Dockerfile.webhook
             context: .
             image_suffix: /webhook
-          - name: orchestrator-caddy
+          - name: agent-orchestration-loop-caddy
             dockerfile: ./deploy/caddy/Dockerfile
             context: ./deploy/caddy
             image_suffix: /caddy

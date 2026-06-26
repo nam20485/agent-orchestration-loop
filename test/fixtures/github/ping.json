@@ -1,5 +1,5 @@
 {
-  "zen": "orchestrator-service-test-ping",
+  "zen": "agent-orchestration-loop-test-ping",
   "hook_id": 12345,
   "hook": {
     "type": "Repository",

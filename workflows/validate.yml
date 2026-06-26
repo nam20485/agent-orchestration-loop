@@ -88,23 +88,23 @@ jobs:
       # the heavy apt/tarball layers are reused instead of being rebuilt from
       # scratch every run. Each image gets its own cache `scope` so they don't
       # collide within the shared GHA cache.
-      - name: Build orchestratorservice image
+      - name: Build agent-orchestration-loop image
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
-          tags: orchestratorservice:ci
+          tags: agent-orchestration-loop:ci
           push: false
           load: true
-          cache-from: type=gha,scope=orchestratorservice
-          cache-to: type=gha,mode=max,scope=orchestratorservice
+          cache-from: type=gha,scope=agent-orchestration-loop
+          cache-to: type=gha,mode=max,scope=agent-orchestration-loop
 
       - name: Build webhook receiver image
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile.webhook
-          tags: orchestrator-webhook:ci
+          tags: agent-orchestration-loop-webhook:ci
           push: false
           load: true
           cache-from: type=gha,scope=webhook
@@ -115,7 +115,7 @@ jobs:
         with:
           context: ./deploy/caddy
           file: ./deploy/caddy/Dockerfile
-          tags: orchestrator-caddy:ci
+          tags: agent-orchestration-loop-caddy:ci
           push: false
           load: true
           cache-from: type=gha,scope=caddy

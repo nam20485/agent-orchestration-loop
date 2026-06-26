@@ -17,7 +17,7 @@ RUN cargo install --git https://github.com/Dicklesworthstone/beads_viewer_rust.g
 
 # --- Stage 2: Final Python/UV Image ---
 FROM debian:trixie-20260518-slim
-LABEL org.opencontainers.image.title=orchestrator-webhook
+LABEL org.opencontainers.image.title=agent-orchestration-loop-webhook
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG OPENCODE_VERSION=1.15.13
@@ -83,11 +83,11 @@ RUN uv sync --frozen --no-dev
 COPY scripts/prompt.ps1 ./scripts/
 
 ENV PROMPT_SCRIPT=/app/scripts/prompt.ps1 \
-    OPENCODE_SERVER_URL=http://orchestratorservice:4099 \
+    OPENCODE_SERVER_URL=http://agent-orchestration-loop:4099 \
     ORCHESTRATOR_WORKSPACE=/workspace \
     WEBHOOK_HOST=0.0.0.0 \
     WEBHOOK_PORT=8080
 
 EXPOSE 8080
 
-CMD ["uv", "run", "orchestrator-webhook"]
+CMD ["uv", "run", "agent-orchestration-loop-webhook"]

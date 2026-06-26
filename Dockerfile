@@ -13,7 +13,7 @@ RUN cargo install --git https://github.com/Dicklesworthstone/beads_rust.git --re
 
 # --- Stage 2: Final Image ---
 FROM debian:trixie-20260518-slim
-LABEL Name=orchestratorservice Version=0.0.1
+LABEL Name=agent-orchestration-loop Version=0.0.1
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG OPENCODE_VERSION=1.17.8

@@ -1,6 +1,6 @@
 services:
-  orchestratorservice:
-    image: ghcr.io/nam20485/orchestrator-service:main-latest
+  agent-orchestration-loop:
+    image: ghcr.io/nam20485/agent-orchestration-loop:main-latest
     pull_policy: always
     platform: linux/amd64
     ports:
@@ -21,7 +21,7 @@ services:
       - OPENCODE_SERVER_PASSWORD=${OPENCODE_SERVER_PASSWORD:?OPENCODE_SERVER_PASSWORD is required} # REDACTED
 
   webhook-receiver:
-    image: ghcr.io/nam20485/orchestrator-service/webhook:main-latest
+    image: ghcr.io/nam20485/agent-orchestration-loop/webhook:main-latest
     pull_policy: always
     platform: linux/amd64
     expose:
@@ -30,7 +30,7 @@ services:
       - ${WORKSPACE_DIR:?WORKSPACE_DIR is required}:/workspace
     environment:
       - OS_WEBHOOK_SECRET=${OS_WEBHOOK_SECRET}
-      - OPENCODE_SERVER_URL=http://orchestratorservice:4099
+      - OPENCODE_SERVER_URL=http://agent-orchestration-loop:4099
       - OPENCODE_SERVER_PASSWORD=${OPENCODE_SERVER_PASSWORD:?OPENCODE_SERVER_PASSWORD is required} # REDACTED
       - GH_ORCHESTRATION_AGENT_TOKEN=${GH_ORCHESTRATION_AGENT_TOKEN}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
@@ -42,11 +42,11 @@ services:
       - BEADS_WORKSPACE_ROOT=${BEADS_WORKSPACE_ROOT:-/workspace}
       - BEADS_TARGET_REPO=${BEADS_TARGET_REPO:-}
     depends_on:
-      - orchestratorservice
+      - agent-orchestration-loop
     restart: unless-stopped
 
   webhook-proxy:
-    image: ghcr.io/nam20485/orchestrator-service/caddy:main-latest
+    image: ghcr.io/nam20485/agent-orchestration-loop/caddy:main-latest
     pull_policy: always
     # Host :80 — HTTP (local dev, Tailscale Funnel, ACME). For Caddy TLS on :443 in prod,
     # also use compose.https.yaml (see README) or COMPOSE_FILE=compose.yaml:compose.https.yaml

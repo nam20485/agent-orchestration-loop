@@ -6,8 +6,8 @@
     "labels": [{ "name": "orchestrate" }]
   },
   "repository": {
-    "full_name": "org/orchestrator-service",
-    "name": "orchestrator-service",
+    "full_name": "org/agent-orchestration-loop",
+    "name": "agent-orchestration-loop",
     "owner": { "login": "org" }
   },
   "sender": { "login": "test-user" },
