@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.defaultInterpreterPath": "/home/nam20485/src/github/nam20485/agent-orchestration-loop/.venv/bin/python",
+		"python.languageServer": "None"
+	}
 }
